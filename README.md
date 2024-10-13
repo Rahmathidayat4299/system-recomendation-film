@@ -6,34 +6,28 @@ Sistem rekomendasi telah menjadi elemen penting dalam pengalaman pengguna di ber
 
 # Data Understanding
 Data Understanding adalah tahap awal proyek yang bertujuan untuk memahami data yang tersedia. Dalam konteks sistem rekomendasi film ini, kita memiliki beberapa file terpisah yang berisi informasi mengenai film, pengguna, dan rating yang diberikan oleh pengguna. Data ini akan menjadi dasar untuk pengembangan sistem rekomendasi dan perlu dieksplorasi untuk mendapatkan wawasan awal mengenai karakteristik dan struktur data.
+* Source Data from => https://www.kaggle.com/datasets/jaidalmotra/movies-review
 Jumlah data: 1400
 Jumlah data duplicated : 264
-Jumlah data null: name            0
-year            0
-movie_rated     0
-run_length      0
-genres          0
-release_date    0
-rating          0
-num_raters      0
-num_reviews     0
-review_url      0
-dtype: int64
 Jumlah data duplicated : 0
 Index: 1136 entries, 0 to 1399
 Data columns (total 10 columns):
- #   Column        Non-Null Count  Dtype  
----  ------        --------------  -----  
- 0   name          1136 non-null   object 
- 1   year          1136 non-null   int64  
- 2   movie_rated   1136 non-null   object 
- 3   run_length    1136 non-null   object 
- 4   genres        1136 non-null   object 
- 5   release_date  1136 non-null   object 
- 6   rating        1136 non-null   float64
- 7   num_raters    1136 non-null   int64  
- 8   num_reviews   1136 non-null   int64  
- 9   review_url    1136 non-null   object
+## Movie Dataset Overview
+
+| Column         | Non-Null Count | Data Type |
+| -------------- | -------------- | --------- |
+| name           | 1136           | object    |
+| year           | 1136           | int64     |
+| movie_rated    | 1136           | object    |
+| run_length     | 1136           | object    |
+| genres         | 1136           | object    |
+| release_date   | 1136           | object    |
+| rating         | 1136           | float64   |
+| num_raters     | 1136           | int64     |
+| num_reviews    | 1136           | int64     |
+| review_url     | 1136           | object    |
+
+
 # Univariate Exploratory Data Analysis
 Pada tahap ini, kami akan melakukan analisis dan eksplorasi setiap variabel dalam data. Kami akan mengevaluasi distribusi rating film, genre yang paling umum, serta karakteristik pengguna, seperti usia dan preferensi genre. Analisis ini bertujuan untuk memberikan pemahaman yang lebih baik tentang bagaimana variabel-variabel ini saling berinteraksi dan pengaruhnya terhadap rekomendasi film. Selain itu, jika diperlukan, eksplorasi lebih lanjut mengenai hubungan antar variabel akan dilakukan untuk mengidentifikasi pola yang relevan.
 ![image](https://github.com/user-attachments/assets/ce6a4aaf-b31c-4a9d-b67d-3c9cf173a747)
