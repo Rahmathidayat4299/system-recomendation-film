@@ -221,7 +221,7 @@ cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 # 5. Membuat Fungsi Rekomendasi
 def get_recommendations(movie_title, cosine_sim=cosine_sim):
     # Mengambil indeks film berdasarkan judulnya
-    idx = data_film_encoded[data_film_encoded['name'] == movie_title].index[0]
+    idx = data_film_cleaned[data_film_cleaned['name'] == movie_title].index[0]
 
     # Mengambil skor kesamaan untuk film yang dituju
     sim_scores = list(enumerate(cosine_sim[idx]))
@@ -236,7 +236,7 @@ def get_recommendations(movie_title, cosine_sim=cosine_sim):
     movie_indices = [i[0] for i in sim_scores]
 
     # Mengembalikan DataFrame film yang direkomendasikan
-    return data_film_encoded.iloc[movie_indices][['name', 'genres', 'rating']]
+    return data_film_cleaned.iloc[movie_indices][['name', 'genres', 'rating']]
 
 # 6. Menggunakan Fungsi Rekomendasi
 recommended_movies = get_recommendations('V for Vendetta')  # Ganti dengan judul film yang ingin direkomendasikan
@@ -246,25 +246,45 @@ print(recommended_movies)
 ## Untuk model content-based filtering kamu dapat menggunakan metrik precision sebagai evaluation.
 """
 
-# 5.1. Define function to calculate precision for recommendations
-def calculate_precision(recommended_movies, relevant_movies):
-    # Determine the number of relevant movies in the recommendations
-    relevant_recommendations = recommended_movies[recommended_movies['name'].isin(relevant_movies)]
+# 1. Membuat Fungsi Rekomendasi yang Menggunakan Cosine Similarity
+def get_recommendations(movie_title, cosine_sim=cosine_sim):
+    # Mengambil indeks film berdasarkan judulnya
+    idx = data_film_cleaned[data_film_cleaned['name'] == movie_title].index[0]
 
-    # Calculate precision
-    precision = len(relevant_recommendations) / len(recommended_movies)
+    # Mengambil skor kesamaan untuk film yang dituju
+    sim_scores = list(enumerate(cosine_sim[idx]))
+
+    # Mengurutkan film berdasarkan skor kesamaan
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+
+    # Mengambil 10 film teratas (selain film itu sendiri)
+    sim_scores = sim_scores[1:11]
+
+    # Mengambil indeks film
+    movie_indices = [i[0] for i in sim_scores]
+
+    # Mengembalikan DataFrame film yang direkomendasikan dengan rating asli
+    recommended_movies = data_film_cleaned.iloc[movie_indices][['name', 'genres', 'rating']]
+
+    return recommended_movies
+
+# 2. Fungsi untuk Menghitung Precision Berdasarkan Rating Asli
+def calculate_precision(recommended_movies):
+    # Tetapkan batas relevansi untuk rating asli (misalnya, rating >= 4.0 dianggap relevan)
+    relevant_movies = recommended_movies[recommended_movies['rating'] >= 4.0]
+
+    # Precision dihitung sebagai jumlah film yang relevan dibagi total film yang direkomendasikan
+    if len(recommended_movies) > 0:  # Menghindari pembagian dengan nol
+        precision = len(relevant_movies) / len(recommended_movies)
+    else:
+        precision = 0.0
 
     return precision
 
-# 6. Menggunakan Fungsi Rekomendasi dan Precision
-recommended_movies = get_recommendations('V for Vendetta')  # Ganti dengan judul film yang ingin direkomendasikan
+# 3. Menggunakan Fungsi Rekomendasi dan Precision
+recommended_movies = get_recommendations('V for Vendetta')  # Ganti dengan judul film yang diinginkan
+precision_score = calculate_precision(recommended_movies)
 
-# Daftar film relevan yang diharapkan (misalnya yang relevan berdasarkan rating atau preferensi pengguna)
-relevant_movies = ['The Matrix', 'Inception', 'The Dark Knight']  # Ganti dengan daftar film yang relevan
-
-# Menghitung precision
-precision = calculate_precision(recommended_movies, relevant_movies)
-
-# Menampilkan film yang direkomendasikan dan precision
+print("Film yang direkomendasikan:")
 print(recommended_movies)
-print(f'Precision: {precision:.2f}')
+print(f"Precision: {precision_score:.2f}")
