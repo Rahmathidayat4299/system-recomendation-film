@@ -26,11 +26,11 @@ Terbatas hanya pada film yang memiliki kemiripan fitur. Tidak dapat memberikan r
 # Data Understanding
 Data Understanding adalah tahap awal proyek yang bertujuan untuk memahami data yang tersedia. Dalam konteks sistem rekomendasi film ini, kita memiliki beberapa file terpisah yang berisi informasi mengenai film, pengguna, dan rating yang diberikan oleh pengguna. Data ini akan menjadi dasar untuk pengembangan sistem rekomendasi dan perlu dieksplorasi untuk mendapatkan wawasan awal mengenai karakteristik dan struktur data.
 * Source Data from => https://www.kaggle.com/datasets/jaidalmotra/movies-review
-Jumlah data: 1400
-Jumlah data duplicated : 264
-Jumlah data duplicated : 0
-Index: 1136 entries, 0 to 1399
-Data columns (total 10 columns):
+* Jumlah data: 1400
+* Jumlah data duplicated : 264
+* Jumlah data duplicated : 0
+* Index: 1136 entries, 0 to 1399
+* Data columns (total 10 columns):
 ## Movie Dataset Overview
 
 | Column         | Non-Null Count | Data Type |
