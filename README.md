@@ -12,18 +12,15 @@ Masalah yang ingin diselesaikan:
 * Apakah sistem rekomendasi dapat membantu mengurangi waktu yang dihabiskan pengguna dalam mencari film?
 ## Goals:
 Tujuan utama adalah membangun sistem rekomendasi film yang:
-
 * Personalisasi: Memberikan rekomendasi film yang cocok dengan selera pengguna berdasarkan film yang sudah pernah mereka tonton atau nilai.
 Efisiensi: Mengurangi waktu pencarian film bagi pengguna, sehingga mereka lebih cepat menemukan film yang sesuai.
 * Akurat: Menggunakan pendekatan yang mampu memberikan hasil rekomendasi yang akurat dan relevan.
 ## Solution Approach:
 Content-Based Filtering: Pendekatan ini fokus pada karakteristik film itu sendiri, seperti genre dan rating. Sistem akan merekomendasikan film yang mirip dengan yang telah ditonton oleh pengguna. Dalam hal ini, kemiripan antar film dihitung menggunakan cosine similarity berdasarkan fitur yang diekstraksi dari teks (genre dan rating).
-
-Kelebihan:
+* Kelebihan:
 Mudah dipahami dan diimplementasikan.
 Cocok untuk pengguna baru yang belum memiliki banyak interaksi.
-Kekurangan:
-
+* Kekurangan:
 Terbatas hanya pada film yang memiliki kemiripan fitur. Tidak dapat memberikan rekomendasi film di luar preferensi pengguna sebelumnya.
 
 # Data Understanding
