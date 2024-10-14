@@ -11,7 +11,7 @@ Masalah yang ingin diselesaikan:
 
 * Bagaimana sistem dapat memberikan rekomendasi film yang sesuai dengan preferensi pengguna?
 * Apakah sistem rekomendasi dapat membantu mengurangi waktu yang dihabiskan pengguna dalam mencari film?
-Goals:
+##Goals:
 Tujuan utama adalah membangun sistem rekomendasi film yang:
 
 * Personalisasi: Memberikan rekomendasi film yang cocok dengan selera pengguna berdasarkan film yang sudah pernah mereka tonton atau nilai.
