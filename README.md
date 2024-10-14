@@ -74,7 +74,28 @@ pengecekan head data film yang sudah dibersihkan
 ![image](https://github.com/user-attachments/assets/9570ab01-3e62-4fc2-b555-bcb8660b96e9)
 # Data Preparation
 Pada tahap ini, kami akan mempersiapkan data dengan beberapa teknik untuk mengatasi masalah seperti missing value. Kami akan memastikan bahwa setiap film memiliki informasi yang lengkap, termasuk genre dan rating. Selain itu, untuk sistem rekomendasi berbasis konten yang akan dikembangkan, kami perlu memverifikasi bahwa setiap film memiliki satu genre yang jelas. Ini penting agar rekomendasi yang diberikan relevan dengan preferensi pengguna.
+* Mengatasi Missing Values
+Pada langkah awal, dilakukan pembersihan data dengan menghapus baris yang memiliki nilai yang hilang (missing values). Ini penting untuk memastikan bahwa data yang akan digunakan bersih dan tidak ada kekurangan informasi yang dapat mempengaruhi hasil model.
 
+* Menyamakan Genre Film
+Jika kolom genres berisi lebih dari satu genre, hanya genre pertama yang diambil. Hal ini dilakukan untuk menyederhanakan representasi genre dan memastikan konsistensi dalam data.
+
+* Encoding untuk Variabel Kategorikal (Genres)
+Variabel kategorikal pada kolom genres diubah menjadi bentuk numerik menggunakan teknik One-Hot Encoding. Teknik ini mengubah kategori menjadi representasi numerik biner, di mana setiap kategori (genre) direpresentasikan sebagai kolom terpisah.
+
+* Normalisasi Fitur Numerik
+Fitur numerik seperti rating, num_raters, dan num_reviews dinormalisasi menggunakan metode StandardScaler. Normalisasi ini penting untuk memastikan semua fitur berada dalam skala yang sama, sehingga model dapat memperlakukan semua fitur secara seimbang.
+
+* Membangun Fitur Gabungan
+Untuk mempersiapkan representasi fitur yang lebih kompleks, beberapa fitur digabungkan menjadi satu. Misalnya, genre dan rating digabungkan menjadi sebuah string, yang akan digunakan untuk membangun representasi teks.
+
+* Ekstraksi Fitur Menggunakan TF-IDF
+Pada tahap ini, TF-IDF (Term Frequency-Inverse Document Frequency) digunakan untuk membangun representasi fitur berbasis teks dari kolom gabungan genre dan rating. TF-IDF membantu menilai pentingnya kata (dalam hal ini genre dan rating) dalam setiap film, berdasarkan frekuensi kemunculannya di seluruh dataset.
+``berikut kode nya ``
+![image](https://github.com/user-attachments/assets/3c41de09-cbc3-45cf-b578-072e11ec769f)
+
+Menghitung Similaritas Cosine
+Setelah membangun matriks TF-IDF, dihitung similaritas cosine antar film. Similaritas cosine digunakan untuk mengukur kemiripan antara dua film berdasarkan fitur gabungan yang telah dihasilkan, dengan hasilnya berupa nilai antara 0 dan 1, di mana 1 menunjukkan kesamaan penuh.
 ![image](https://github.com/user-attachments/assets/687a2554-55de-41e1-86a1-5b6aa71dccca)
 
 
