@@ -61,6 +61,9 @@ pengecekan head data film yang sudah dibersihkan
 Pada tahap ini, kami akan mempersiapkan data dengan beberapa teknik untuk mengatasi masalah seperti missing value. Kami akan memastikan bahwa setiap film memiliki informasi yang lengkap, termasuk genre dan rating. Selain itu, untuk sistem rekomendasi berbasis konten yang akan dikembangkan, kami perlu memverifikasi bahwa setiap film memiliki satu genre yang jelas. Ini penting agar rekomendasi yang diberikan relevan dengan preferensi pengguna.
 * Mengatasi Missing Values
 Pada langkah awal, dilakukan pembersihan data dengan menghapus baris yang memiliki nilai yang hilang (missing values). Ini penting untuk memastikan bahwa data yang akan digunakan bersih dan tidak ada kekurangan informasi yang dapat mempengaruhi hasil model.
+* penanganan outlier
+* Tujuan dari kode dibawah ini  ini adalah untuk membersihkan dataset dari outlier yang dapat mempengaruhi analisis data dan model yang akan dibangun. Dengan menghapus outlier, dataset menjadi lebih representatif dan menghasilkan hasil analisis yang lebih akurat.
+* ![image](https://github.com/user-attachments/assets/dd5da647-86be-4abd-a961-309b2f0ce353)
 
 * Menyamakan Genre Film
 Jika kolom genres berisi lebih dari satu genre, hanya genre pertama yang diambil. Hal ini dilakukan untuk menyederhanakan representasi genre dan memastikan konsistensi dalam data.
