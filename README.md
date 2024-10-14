@@ -9,15 +9,15 @@ Platform streaming atau layanan film sering menghadapi tantangan untuk menyediak
 
 Masalah yang ingin diselesaikan:
 
-Bagaimana sistem dapat memberikan rekomendasi film yang sesuai dengan preferensi pengguna?
-Apakah sistem rekomendasi dapat membantu mengurangi waktu yang dihabiskan pengguna dalam mencari film?
+* Bagaimana sistem dapat memberikan rekomendasi film yang sesuai dengan preferensi pengguna?
+* Apakah sistem rekomendasi dapat membantu mengurangi waktu yang dihabiskan pengguna dalam mencari film?
 Goals:
 Tujuan utama adalah membangun sistem rekomendasi film yang:
 
-Personalisasi: Memberikan rekomendasi film yang cocok dengan selera pengguna berdasarkan film yang sudah pernah mereka tonton atau nilai.
+* Personalisasi: Memberikan rekomendasi film yang cocok dengan selera pengguna berdasarkan film yang sudah pernah mereka tonton atau nilai.
 Efisiensi: Mengurangi waktu pencarian film bagi pengguna, sehingga mereka lebih cepat menemukan film yang sesuai.
-Akurat: Menggunakan pendekatan yang mampu memberikan hasil rekomendasi yang akurat dan relevan.
-Solution Approach:
+* Akurat: Menggunakan pendekatan yang mampu memberikan hasil rekomendasi yang akurat dan relevan.
+* Solution Approach:
 Content-Based Filtering: Pendekatan ini fokus pada karakteristik film itu sendiri, seperti genre dan rating. Sistem akan merekomendasikan film yang mirip dengan yang telah ditonton oleh pengguna. Dalam hal ini, kemiripan antar film dihitung menggunakan cosine similarity berdasarkan fitur yang diekstraksi dari teks (genre dan rating).
 
 Kelebihan:
