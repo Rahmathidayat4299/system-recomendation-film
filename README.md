@@ -100,14 +100,49 @@ Setelah membangun matriks TF-IDF, dihitung similaritas cosine antar film. Simila
 
 
 # Model Development dengan Content-Based Filtering
-Pada tahap ini, kami akan mengembangkan sistem rekomendasi menggunakan teknik content-based filtering. Teknik ini akan merekomendasikan film yang mirip dengan film yang disukai pengguna di masa lalu. Kami akan menggunakan tf-idf vectorizer untuk menemukan representasi fitur penting dari setiap genre film dan menghitung tingkat kesamaan menggunakan cosine similarity. Berdasarkan hasil perhitungan ini, sistem akan memberikan sejumlah rekomendasi film untuk pengguna berdasarkan film yang telah mereka tonton dan sukai sebelumnya.
+* Pada tahap ini, kami akan mengembangkan sistem rekomendasi menggunakan teknik content-based filtering. Teknik ini akan merekomendasikan film yang mirip dengan film yang disukai pengguna di masa lalu. Kami akan menggunakan tf-idf vectorizer untuk menemukan representasi fitur penting dari setiap genre film dan menghitung tingkat kesamaan menggunakan cosine similarity. Berdasarkan hasil perhitungan ini, sistem akan memberikan sejumlah rekomendasi film untuk pengguna berdasarkan film yang telah mereka tonton dan sukai sebelumnya.
+* Pada tahap ini, pendekatan content-based filtering digunakan untuk merekomendasikan film berdasarkan kemiripan fitur antarfilm. Pendekatan ini bekerja dengan cara mencari film-film yang memiliki fitur serupa dengan film yang diinputkan oleh pengguna, berdasarkan genre, rating, atau atribut lain yang relevan. Model yang digunakan untuk mengukur kesamaan antarfilm adalah Cosine Similarity, yang umum digunakan dalam analisis berbasis teks atau fitur yang direpresentasikan dalam bentuk vektor.
+
+* Penjelasan Detail Model
+Content-Based Filtering
+Content-based filtering adalah metode rekomendasi yang menganalisis berbagai fitur konten film (seperti genre, rating, dll.) untuk mencari kesamaan dengan film lain. Pendekatan ini hanya menggunakan data film itu sendiri tanpa memperhitungkan preferensi pengguna lain, sehingga menghasilkan rekomendasi yang didasarkan pada konten serupa.
+
+* Cosine Similarity sebagai Model
+Cosine similarity adalah teknik untuk mengukur kesamaan antar dokumen (dalam hal ini antar film) yang direpresentasikan dalam bentuk vektor. Cosine similarity menghitung sudut antara dua vektor dalam ruang multidimensi, dengan nilai yang berkisar antara 0 hingga 1. Semakin dekat nilai cosine similarity ke 1, semakin mirip kedua film tersebut.
+
+* Vektor film dibangun menggunakan TF-IDF (Term Frequency-Inverse Document Frequency), yang mewakili teks (genre dan rating) dalam bentuk numerik, dengan mempertimbangkan seberapa sering sebuah genre muncul dalam seluruh dataset. Hal ini memastikan bahwa genre yang lebih unik mendapat bobot yang lebih tinggi.
+Cosine similarity kemudian diterapkan pada vektor ini untuk mengukur kesamaan antara film yang dipilih dengan film lain.
+Fungsi Rekomendasi
+Fungsi get_recommendations bekerja dengan cara sebagai berikut:
+
+* Mencari Indeks Film: Berdasarkan judul film yang diberikan, fungsi mencari indeks film tersebut dalam dataset.
+Menghitung Skor Kesamaan: Cosine similarity digunakan untuk menghitung skor kesamaan antara film yang dituju dengan semua film lain dalam dataset.
+Mengurutkan Skor Kesamaan: Setelah skor kesamaan dihitung, film-film diurutkan berdasarkan skor tertinggi, sehingga film dengan konten paling mirip berada di urutan teratas.
+Mengambil 10 Film Teratas: Setelah diurutkan, fungsi akan memilih 10 film teratas yang direkomendasikan (kecuali film itu sendiri).
+Mengembalikan Rekomendasi: Fungsi mengembalikan daftar film yang direkomendasikan, termasuk informasi seperti nama film, genre, dan rating.
+* Hasil Rekomendasi
+Pengguna dapat menginput judul film (misalnya, V for Vendetta), dan model akan mengembalikan daftar film yang paling mirip berdasarkan genre dan rating. Daftar rekomendasi ini dapat digunakan untuk membantu pengguna menemukan film-film lain yang mungkin sesuai dengan preferensi mereka.
 ![image](https://github.com/user-attachments/assets/097c2815-2bf7-4b05-996a-da242ca6ea70)
 # Evaluation
-* Akurasi: Sebagian besar film yang direkomendasikan relevan dan memiliki kemiripan dengan film input berdasarkan genre dan rating. Ini menunjukkan bahwa sistem sudah memenuhi tujuan akurasi.
+## Masalah yang Ingin Diselesaikan:
 
-* Efisiensi: Pengguna dapat menemukan film yang relevan dengan cepat tanpa harus menelusuri seluruh katalog. Sistem membantu dalam mengurangi waktu pencarian.
+* Rekomendasi Film Berdasarkan Preferensi: Sistem ini bertujuan untuk memberikan rekomendasi film yang sesuai dengan preferensi pengguna berdasarkan kesamaan konten film seperti genre dan rating. Dengan pendekatan content-based filtering, sistem menggunakan informasi yang tersedia dari film yang sudah pernah ditonton atau dinilai pengguna untuk mencari film-film lain yang memiliki kemiripan konten.
+* Mengurangi Waktu Pencarian Film: Salah satu masalah umum yang dihadapi pengguna adalah lamanya waktu yang dihabiskan dalam mencari film yang sesuai dengan selera mereka. Sistem ini berusaha menyelesaikan masalah tersebut dengan memberikan daftar rekomendasi yang langsung relevan dan berkualitas tinggi, sehingga mengurangi waktu pencarian.
+## Goals
+* Personalisasi: Tujuan pertama dari sistem ini adalah untuk memberikan rekomendasi yang dipersonalisasi berdasarkan film yang telah dipilih pengguna. Melalui metode cosine similarity yang membandingkan genre dan rating antarfilm, sistem mampu memberikan film yang serupa secara konten. Misalnya, jika pengguna menyukai V for Vendetta, sistem akan merekomendasikan film dengan genre yang sama seperti Action, Drama, atau Sci-Fi, seperti terlihat pada hasil rekomendasi yang relevan.
 
-* Personalisasi: Sistem telah memberikan hasil yang dipersonalisasi berdasarkan film yang sudah dipilih pengguna. Namun, untuk personalisasi lebih mendalam, kombinasi dengan metode lain seperti collaborative filtering dapat dilakukan.
+* Efisiensi: Efisiensi merupakan salah satu tujuan utama sistem ini, di mana pengguna dapat dengan cepat menemukan film yang sesuai dengan preferensi mereka. Dengan menggunakan pendekatan content-based filtering, sistem mampu memproses dan menganalisis data secara efisien, menghasilkan rekomendasi dalam waktu singkat tanpa perlu melakukan perbandingan yang terlalu kompleks dengan preferensi pengguna lain, seperti pada collaborative filtering.
+
+* Akurasi: Akurasi dari sistem ini diukur berdasarkan kemampuan untuk merekomendasikan film yang relevan dengan film input. Pada hasil rekomendasi (V for Vendetta), sebagian besar film yang direkomendasikan memiliki kemiripan dari segi genre, seperti Action, Drama, Thriller, atau Sci-Fi. Ini menunjukkan bahwa sistem mampu memberikan rekomendasi yang akurat dan relevan dengan preferensi pengguna berdasarkan kesamaan konten.
+
+* Evaluasi Akurasi: Berdasarkan output yang dihasilkan, rekomendasi yang diberikan oleh sistem sebagian besar relevan dengan film yang diminta. Film-film seperti Batman Begins, Indiana Jones and the Last Crusade, serta Die Hard yang memiliki genre Action dan Adventure sangat cocok direkomendasikan setelah input film V for Vendetta. Ini menunjukkan bahwa sistem memberikan hasil yang akurat sesuai dengan harapan.
+
+* Efisiensi: Pengguna dapat dengan cepat menemukan film yang sesuai tanpa harus melalui proses panjang untuk mencari satu per satu dari seluruh katalog film. Dalam hitungan detik, rekomendasi yang relevan disajikan, sehingga menghemat waktu pengguna dalam memilih film.
+
+* Personalisasi: Meskipun sistem sudah memberikan rekomendasi yang relevan berdasarkan konten film yang dipilih, tingkat personalisasi ini masih terbatas pada kesamaan konten. Untuk peningkatan personalisasi yang lebih mendalam, kombinasi dengan metode lain seperti collaborative filtering atau pengumpulan feedback pengguna lebih lanjut dapat meningkatkan kemampuan rekomendasi sistem.
+
+## Kesimpulan Evaluasi
+Sistem rekomendasi ini telah memenuhi tujuan utamanya, yakni memberikan hasil yang akurat, efisien, dan relevan. Pengguna dapat menikmati rekomendasi film yang sesuai dengan preferensi mereka secara cepat, mengurangi waktu yang dihabiskan dalam pencarian film. Meski begitu, untuk personalisasi yang lebih mendalam, sistem ini dapat diintegrasikan dengan metode lain di masa depan.
 * ![image](https://github.com/user-attachments/assets/c25fee73-d3b9-4129-a467-2fd4a3037121)
 
 # Referensi Jurnal
