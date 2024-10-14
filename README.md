@@ -95,7 +95,7 @@ Pada tahap ini, TF-IDF (Term Frequency-Inverse Document Frequency) digunakan unt
 ![image](https://github.com/user-attachments/assets/3c41de09-cbc3-45cf-b578-072e11ec769f)
 
 Menghitung Similaritas Cosine
-Setelah membangun matriks TF-IDF, dihitung similaritas cosine antar film. Similaritas cosine digunakan untuk mengukur kemiripan antara dua film berdasarkan fitur gabungan yang telah dihasilkan, dengan hasilnya berupa nilai antara 0 dan 1, di mana 1 menunjukkan kesamaan penuh.
+Setelah membangun matriks TF-IDF, dihitung similaritas cosine antar film. Similaritas cosine digunakan untuk mengukur kemiripan antara dua film berdasarkan fitur gabungan yang telah dihasilkan, dengan hasilnya berupa nilai antara 0 dan 1, di mana 1 menunjukkan kesamaan penuh.<br>
 ![image](https://github.com/user-attachments/assets/687a2554-55de-41e1-86a1-5b6aa71dccca)
 
 
