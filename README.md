@@ -77,7 +77,8 @@ Untuk mempersiapkan representasi fitur yang lebih kompleks, beberapa fitur digab
 * Ekstraksi Fitur Menggunakan TF-IDF
 Pada tahap ini, TF-IDF (Term Frequency-Inverse Document Frequency) digunakan untuk membangun representasi fitur berbasis teks dari kolom gabungan genre dan rating. TF-IDF membantu menilai pentingnya kata (dalam hal ini genre dan rating) dalam setiap film, berdasarkan frekuensi kemunculannya di seluruh dataset.
 ``berikut kode nya ``
-![image](https://github.com/user-attachments/assets/3c41de09-cbc3-45cf-b578-072e11ec769f)
+![image](https://github.com/user-attachments/assets/649ddbee-961a-480e-a693-0d6dbce3edc1)
+
 
 
 
