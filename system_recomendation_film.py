@@ -14,6 +14,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
 
 """# Crawling Data
 *Proses Pengambilan data dari sumber repository github
@@ -167,9 +170,6 @@ data_film_cleaned.head()
 * Normalisasi: Fitur numerik dinormalisasi untuk menghindari perbedaan skala yang mempengaruhi model.
 """
 
-import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
 # 1. Mengatasi Missing Values
 # Menghapus baris dengan missing values
 data_film_cleaned = data_film.dropna()
@@ -190,18 +190,6 @@ data_film_encoded = pd.concat([data_film_cleaned.reset_index(drop=True), genres_
 scaler = StandardScaler()
 numerical_columns = ['rating', 'num_raters', 'num_reviews']
 data_film_encoded[numerical_columns] = scaler.fit_transform(data_film_encoded[numerical_columns])
-
-# Tampilkan data setelah persiapan
-print(data_film_encoded.head())
-
-"""# Model dengan Content based filtering
-Membangun sistem rekomendasi film berbasis konten yang menggunakan informasi dari deskripsi film (genre, name, dan review_url) untuk merekomendasikan film yang mirip dengan film yang dipilih.
-"""
-
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
-
 # 1. Memastikan DataFrame bersih dan siap
 # (Anda sudah melakukannya sebelumnya)
 
@@ -218,6 +206,17 @@ tfidf_matrix = tfidf.fit_transform(data_film_encoded['combined_features'])
 
 # 4. Menghitung Cosine Similarity
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+# Tampilkan data setelah persiapan
+print(data_film_encoded.head())
+
+"""# Model dengan Content based filtering
+Membangun sistem rekomendasi film berbasis konten yang menggunakan informasi dari deskripsi film (genre, name, dan review_url) untuk merekomendasikan film yang mirip dengan film yang dipilih.
+"""
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
 
 # 5. Membuat Fungsi Rekomendasi
 def get_recommendations(movie_title, cosine_sim=cosine_sim):
