@@ -204,8 +204,7 @@ data_film_encoded['combined_features'] = (
 tfidf = TfidfVectorizer(stop_words='english')
 tfidf_matrix = tfidf.fit_transform(data_film_encoded['combined_features'])
 
-# 4. Menghitung Cosine Similarity
-cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
 
 # Tampilkan data setelah persiapan
 print(data_film_encoded.head())
@@ -217,7 +216,8 @@ Membangun sistem rekomendasi film berbasis konten yang menggunakan informasi dar
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-
+# 4. Menghitung Cosine Similarity
+cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 # 5. Membuat Fungsi Rekomendasi
 def get_recommendations(movie_title, cosine_sim=cosine_sim):
     # Mengambil indeks film berdasarkan judulnya
@@ -241,3 +241,30 @@ def get_recommendations(movie_title, cosine_sim=cosine_sim):
 # 6. Menggunakan Fungsi Rekomendasi
 recommended_movies = get_recommendations('V for Vendetta')  # Ganti dengan judul film yang ingin direkomendasikan
 print(recommended_movies)
+
+"""#Metrik Precision
+## Untuk model content-based filtering kamu dapat menggunakan metrik precision sebagai evaluation.
+"""
+
+# 5.1. Define function to calculate precision for recommendations
+def calculate_precision(recommended_movies, relevant_movies):
+    # Determine the number of relevant movies in the recommendations
+    relevant_recommendations = recommended_movies[recommended_movies['name'].isin(relevant_movies)]
+
+    # Calculate precision
+    precision = len(relevant_recommendations) / len(recommended_movies)
+
+    return precision
+
+# 6. Menggunakan Fungsi Rekomendasi dan Precision
+recommended_movies = get_recommendations('V for Vendetta')  # Ganti dengan judul film yang ingin direkomendasikan
+
+# Daftar film relevan yang diharapkan (misalnya yang relevan berdasarkan rating atau preferensi pengguna)
+relevant_movies = ['The Matrix', 'Inception', 'The Dark Knight']  # Ganti dengan daftar film yang relevan
+
+# Menghitung precision
+precision = calculate_precision(recommended_movies, relevant_movies)
+
+# Menampilkan film yang direkomendasikan dan precision
+print(recommended_movies)
+print(f'Precision: {precision:.2f}')
