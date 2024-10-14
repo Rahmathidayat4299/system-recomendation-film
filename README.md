@@ -128,7 +128,11 @@ Pengguna dapat menginput judul film (misalnya, V for Vendetta), dan model akan m
 * Personalisasi: Meskipun sistem sudah memberikan rekomendasi yang relevan berdasarkan konten film yang dipilih, tingkat personalisasi ini masih terbatas pada kesamaan konten. 
 ## Kesimpulan Evaluasi
 Sistem rekomendasi ini telah memenuhi tujuan utamanya, yakni memberikan hasil yang akurat, efisien, dan relevan. Pengguna dapat menikmati rekomendasi film yang sesuai dengan preferensi mereka secara cepat, mengurangi waktu yang dihabiskan dalam pencarian film. Meski begitu, untuk personalisasi yang lebih mendalam, sistem ini dapat diintegrasikan dengan metode lain di masa depan.
+
 * ![image](https://github.com/user-attachments/assets/c25fee73-d3b9-4129-a467-2fd4a3037121)
+***Hasil precision yang kamu dapatkan menunjukkan bahwa sistem rekomendasi bekerja dengan baik dalam hal akurasi,***
+*![image](https://github.com/user-attachments/assets/f384e054-696b-4a65-ac02-2818be41d882)
+
 
 # Referensi Jurnal
 * Sebastiani, F. (2002). "Machine learning in automated text categorization." ACM Computing Surveys (CSUR), 34(1), 1-47. DOI: 10.1145/505230.505235
